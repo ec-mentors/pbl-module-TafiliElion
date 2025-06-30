@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pbl_module.conlang_creator.model.Word;
-import pbl_module.conlang_creator.model.WordRequestDTO;
+import pbl_module.conlang_creator.dto.request.WordRequestDTO;
 import pbl_module.conlang_creator.service.WordService;
 
 @RestController

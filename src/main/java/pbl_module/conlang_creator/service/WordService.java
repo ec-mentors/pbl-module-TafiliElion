@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import pbl_module.conlang_creator.model.LanguageProject;
 import pbl_module.conlang_creator.model.Morpheme;
 import pbl_module.conlang_creator.model.Word;
-import pbl_module.conlang_creator.model.WordRequestDTO;
+import pbl_module.conlang_creator.dto.request.WordRequestDTO;
 import pbl_module.conlang_creator.repositories.LanguageProjectRepository;
 import pbl_module.conlang_creator.repositories.MorphemeRepository;
 import pbl_module.conlang_creator.repositories.WordRepository;
