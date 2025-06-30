@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 
 public class WordRequestDTO {
-    private String form;
+    private String spelling;
     private String meaning;
     private String partOfSpeech;
     private Long languageProjectId;
