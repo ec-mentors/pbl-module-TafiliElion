@@ -27,10 +27,5 @@ public class Word {
     private LanguageProject languageProject;
 
     @ManyToMany
-    @JoinTable (
-            name = "word_morpheme",
-            joinColumns = @JoinColumn(name = "word_id"),
-            inverseJoinColumns = @JoinColumn(name = "morpheme_id")
-    )
     private List<Morpheme> morphemesInWord;
 }

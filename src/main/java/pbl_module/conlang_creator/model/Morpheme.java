@@ -26,10 +26,5 @@ public class Morpheme {
     private LanguageProject languageProject;
 
     @ManyToMany
-    @JoinTable (
-            name = "morpheme_phoneme",
-            joinColumns = @JoinColumn(name = "morpheme_id"),
-            inverseJoinColumns = @JoinColumn(name = "phoneme_id")
-    )
     private List<Phoneme> phonemesInMorpheme;
 }
