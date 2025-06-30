@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -22,4 +24,7 @@ public class Morpheme {
 
     @ManyToOne
     private LanguageProject languageProject;
+
+    @ManyToMany
+    private List<Phoneme> phonemesInMorpheme;
 }
