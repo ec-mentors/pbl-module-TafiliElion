@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -22,4 +24,12 @@ public class Morpheme {
 
     @ManyToOne
     private LanguageProject languageProject;
+
+    @ManyToMany
+    @JoinTable (
+            name = "morpheme_phoneme",
+            joinColumns = @JoinColumn(name = "morpheme_id"),
+            inverseJoinColumns = @JoinColumn(name = "phoneme_id")
+    )
+    private List<Phoneme> phonemesInMorpheme;
 }

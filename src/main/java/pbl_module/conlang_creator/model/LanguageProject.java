@@ -22,12 +22,12 @@ public class LanguageProject {
     private String name;
     private String description;
 
-    @OneToMany(mappedBy = "languageProject", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "languageProject", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Word> words;
 
-    @OneToMany(mappedBy = "languageProject", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "languageProject", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Phoneme> phonemes;
 
-    @OneToMany(mappedBy = "languageProject", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "languageProject", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Morpheme> morphemes;
 }
