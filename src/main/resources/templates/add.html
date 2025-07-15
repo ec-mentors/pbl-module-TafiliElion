@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <title>Add New Word</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        form {
+            width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 4px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .morpheme-checkbox {
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .morpheme-checkbox input {
+            margin-right: 8px;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Add New Word</h1>
+
+<form th:action="@{/words/add}" th:object="${wordDto}" method="post">
+    <input type="hidden" th:field="*{languageProjectId}" />
+
+    <label>Spelling:</label>
+    <label>
+        <input type="text" th:field="*{spelling}" />
+    </label>
+
+    <label>Meaning:</label>
+    <label>
+        <input type="text" th:field="*{meaning}" />
+    </label>
+
+    <label>Part of Speech:</label>
+    <label>
+        <input type="text" th:field="*{partOfSpeech}" />
+    </label>
+
+    <label>Morphemes:</label>
+    <div th:each="morpheme : ${morphemes}" class="morpheme-checkbox">
+        <input type="checkbox"
+               th:value="${morpheme.id}"
+               th:field="*{morphemeIds}" />
+        <span th:text="${morpheme.form}">form</span>
+    </div>
+
+
+    <button type="submit">Save</button>
+</form>
+
+<a th:href="@{/words(projectId=${wordDto.languageProjectId})}">← Back to Word List</a>
+
+</body>
+</html>

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -15,5 +16,5 @@ public class WordRequestDTO {
     private String meaning;
     private String partOfSpeech;
     private Long languageProjectId;
-    private List<Long> morphemeIds;
+    private List<Long> morphemeIds = new ArrayList<>();
 }
