@@ -25,7 +25,7 @@ public class WordWebController {
         List<Word> words = wordService.getWordsByProjectId(projectId);
         model.addAttribute("words", words);
         model.addAttribute("projectId", projectId);
-        return "list";
+        return "word_list";
     }
 
     @GetMapping("/add")
@@ -35,7 +35,7 @@ public class WordWebController {
 
         model.addAttribute("wordDto", wordDto);
         model.addAttribute("morphemes", morphemeService.findByProjectId(projectId));
-        return "add";
+        return "word_add";
     }
 
     @PostMapping("/add")
