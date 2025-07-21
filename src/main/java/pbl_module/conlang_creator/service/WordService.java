@@ -36,4 +36,12 @@ public class WordService {
 
         return wordRepository.save(word);
     }
+
+    public List<Word> getWordsByProjectId(Long id) {
+        return wordRepository.findByLanguageProjectId(id);
+    }
+
+    public void deleteById(Long id) {
+        wordRepository.deleteById(id);
+    }
 }
