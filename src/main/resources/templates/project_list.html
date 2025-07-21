@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
     <title>Language Projects</title>
     <style>
@@ -14,9 +14,8 @@
 
         table {
             width: 80%;
-            margin: auto;
             border-collapse: collapse;
-            margin-top: 20px;
+            margin: 20px auto auto;
         }
 
         th, td {
@@ -36,10 +35,9 @@
 
         .top-actions {
             width: 80%;
-            margin: auto;
             display: flex;
             justify-content: flex-end;
-            margin-top: 10px;
+            margin: 10px auto auto;
         }
 
         .top-actions a {
@@ -89,7 +87,18 @@
             <td th:text="${project.name}">Project Name</td>
             <td th:text="${project.description}">Project Description</td>
             <td class="actions">
-                <a th:href="@{/words(projectId=${project.id})}">Open</a>
+                <form th:action="@{/words}" method="get" style="display:inline;">
+                    <input type="hidden" name="projectId" th:value="${project.id}" />
+                    <button type="submit">Open</button>
+                </form>
+
+                <form th:action="@{/projects/edit/{id}(id=${project.id})}" method="get" style="display:inline;">
+                    <button type="submit">Edit</button>
+                </form>
+
+                <form th:action="@{/projects/delete/{id}(id=${project.id})}" method="post" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
             </td>
         </tr>
         </tbody>

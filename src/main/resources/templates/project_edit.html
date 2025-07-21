@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
-    <title>Create Language Project</title>
+    <title>Edit Project</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -61,20 +61,23 @@
 </head>
 <body>
 
-<h1>Create New Language Project</h1>
+<h1>Edit Language Project</h1>
 
-<form th:action="@{/projects/add}" th:object="${projectDto}" method="post">
-    <label for="name">Name:</label>
-    <input type="text" th:field="*{name}" id="name" />
+<form th:action="@{/projects/edit/{id}(id=${projectId})}" th:object="${projectDto}" method="post">
+    <label>Name:</label>
+    <label>
+        <input type="text" th:field="*{name}" />
+    </label>
 
-    <label for="description">Description:</label>
-    <input type="text" th:field="*{description}" id="description" />
+    <label>Description:</label>
+    <label>
+        <input type="text" th:field="*{description}" />
+    </label>
 
-    <button type="submit">Create Project</button>
+    <button type="submit">Save Changes</button>
 </form>
 
 <a th:href="@{/projects}">← Back to Projects</a>
 
 </body>
 </html>
-

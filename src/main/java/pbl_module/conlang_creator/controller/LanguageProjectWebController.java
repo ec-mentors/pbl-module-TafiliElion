@@ -3,10 +3,7 @@ package pbl_module.conlang_creator.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pbl_module.conlang_creator.dto.request.LanguageProjectRequestDTO;
 import pbl_module.conlang_creator.model.LanguageProject;
@@ -42,9 +39,26 @@ public class LanguageProjectWebController {
         return "project_list";
     }
 
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable Long id, Model model) {
+        LanguageProject project = projectService.findById(id);
+        LanguageProjectRequestDTO dto = new LanguageProjectRequestDTO(project.getName(), project.getDescription());
+        model.addAttribute("projectId", id);
+        model.addAttribute("projectDto", dto);
+        return "project_edit";
+    }
 
-    @GetMapping("/")
-    public String redirectToProjects() {
+    @PostMapping("/edit/{id}")
+    public String handleEditProject(@PathVariable Long id,
+                                    @ModelAttribute("projectDto") LanguageProjectRequestDTO dto,
+                                    RedirectAttributes redirectAttributes) {
+        projectService.update(id, dto);
+        return "redirect:/projects";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String deleteProject(@PathVariable Long id) {
+        projectService.deleteById(id);
         return "redirect:/projects";
     }
 

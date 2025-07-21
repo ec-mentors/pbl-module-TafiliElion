@@ -29,4 +29,15 @@ public class LanguageProjectService {
         return languageProjectRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Project not found."));
     }
+
+    public void update(Long id, LanguageProjectRequestDTO dto) {
+        LanguageProject project = findById(id);
+        project.setName(dto.getName());
+        project.setDescription(dto.getDescription());
+        languageProjectRepository.save(project);
+    }
+
+    public void deleteById(Long id) {
+        languageProjectRepository.deleteById(id);
+    }
 }
