@@ -16,6 +16,6 @@ public class MorphemeRequestDTO {
     private String meaning;
     private String type;
     private Long languageProjectId;
-    private List<Long> phonemeIds;
+    private List<Long> phonemeIds = new ArrayList<>();
 }
 

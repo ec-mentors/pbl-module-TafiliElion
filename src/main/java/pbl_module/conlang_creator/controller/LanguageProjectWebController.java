@@ -62,4 +62,12 @@ public class LanguageProjectWebController {
         return "redirect:/projects";
     }
 
+    @GetMapping("/{id}/dashboard")
+    public String showProjectDashboard(@PathVariable Long id, Model model) {
+        LanguageProject project = projectService.findById(id);
+        model.addAttribute("project", project);
+        return "project_dashboard";
+    }
+
+
 }

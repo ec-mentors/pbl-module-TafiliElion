@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <title th:text="'Dashboard: ' + ${project.name}">Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        a.button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        a.button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<h1 th:text="'Project: ' + ${project.name}"></h1>
+
+<div class="button-group">
+    <!-- Words -->
+    <a th:href="@{/words(projectId=${project.id})}" class="button">View Words</a>
+    <a th:href="@{/words/add(projectId=${project.id})}" class="button">Add Word</a>
+
+    <!-- Morphemes -->
+    <a th:href="@{/morphemes(projectId=${project.id})}" class="button">View Morphemes</a>
+    <a th:href="@{/morphemes/add(projectId=${project.id})}" class="button">Add Morpheme</a>
+
+    <!-- Phonemes -->
+    <a th:href="@{/phonemes(projectId=${project.id})}" class="button">View Phonemes</a>
+    <a th:href="@{/phonemes/add(projectId=${project.id})}" class="button">Add Phoneme</a>
+</div>
+
+</body>
+</html>

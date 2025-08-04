@@ -15,7 +15,7 @@
         table {
             width: 80%;
             border-collapse: collapse;
-            margin: 20px auto auto;
+            margin: 20px auto;
         }
 
         th, td {
@@ -37,7 +37,7 @@
             width: 80%;
             display: flex;
             justify-content: flex-end;
-            margin: 10px auto auto;
+            margin: 10px auto;
         }
 
         .top-actions a {
@@ -50,6 +50,27 @@
 
         .top-actions a:hover {
             background-color: #45a049;
+        }
+
+        .button {
+            background-color: #2196F3;
+            color: white;
+            padding: 8px 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .button.edit {
+            background-color: #FFC107;
+        }
+
+        .button.delete {
+            background-color: #F44336;
+        }
+
+        .button:hover {
+            opacity: 0.9;
         }
 
         .empty-message {
@@ -87,17 +108,19 @@
             <td th:text="${project.name}">Project Name</td>
             <td th:text="${project.description}">Project Description</td>
             <td class="actions">
-                <form th:action="@{/words}" method="get" style="display:inline;">
-                    <input type="hidden" name="projectId" th:value="${project.id}" />
-                    <button type="submit">Open</button>
+                <!-- Open Project -->
+                <form th:action="@{/projects/{id}/dashboard(id=${project.id})}" method="get">
+                    <button class="button" type="submit">Open</button>
                 </form>
 
-                <form th:action="@{/projects/edit/{id}(id=${project.id})}" method="get" style="display:inline;">
-                    <button type="submit">Edit</button>
+                <!-- Edit Project -->
+                <form th:action="@{/projects/edit/{id}(id=${project.id})}" method="get">
+                    <button class="button edit" type="submit">Edit</button>
                 </form>
 
-                <form th:action="@{/projects/delete/{id}(id=${project.id})}" method="post" style="display:inline;">
-                    <button type="submit">Delete</button>
+                <!-- Delete Project -->
+                <form th:action="@{/projects/delete/{id}(id=${project.id})}" method="post">
+                    <button class="button delete" type="submit">Delete</button>
                 </form>
             </td>
         </tr>
@@ -107,4 +130,5 @@
 
 </body>
 </html>
+
 
