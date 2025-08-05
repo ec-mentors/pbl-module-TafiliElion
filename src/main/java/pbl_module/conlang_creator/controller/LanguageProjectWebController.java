@@ -50,8 +50,7 @@ public class LanguageProjectWebController {
 
     @PostMapping("/edit/{id}")
     public String handleEditProject(@PathVariable Long id,
-                                    @ModelAttribute("projectDto") LanguageProjectRequestDTO dto,
-                                    RedirectAttributes redirectAttributes) {
+                                    @ModelAttribute("projectDto") LanguageProjectRequestDTO dto) {
         projectService.update(id, dto);
         return "redirect:/projects";
     }
