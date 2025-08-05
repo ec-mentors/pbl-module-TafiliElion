@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <title>Add New Phoneme</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        form {
+            width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 4px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Add New Phoneme</h1>
+
+<form th:action="@{/phonemes/add(projectId=${phonemeDto.languageProjectID})}" th:object="${phonemeDto}" method="post">
+    <input type="hidden" th:field="*{languageProjectID}" />
+
+    <label>Symbol:</label>
+    <label>
+        <input type="text" th:field="*{symbol}" />
+    </label>
+
+    <label>IPA:</label>
+    <label>
+        <input type="text" th:field="*{ipa}" />
+    </label>
+
+    <label>Category:</label>
+    <label>
+        <input type="text" th:field="*{category}" />
+    </label>
+
+    <button type="submit">Save</button>
+</form>
+
+<a th:href="@{/phonemes(projectId=${phonemeDto.languageProjectID})}">← Back to Phonemes</a>
+
+</body>
+</html>
+

@@ -50,8 +50,7 @@ public class LanguageProjectWebController {
 
     @PostMapping("/edit/{id}")
     public String handleEditProject(@PathVariable Long id,
-                                    @ModelAttribute("projectDto") LanguageProjectRequestDTO dto,
-                                    RedirectAttributes redirectAttributes) {
+                                    @ModelAttribute("projectDto") LanguageProjectRequestDTO dto) {
         projectService.update(id, dto);
         return "redirect:/projects";
     }
@@ -61,5 +60,13 @@ public class LanguageProjectWebController {
         projectService.deleteById(id);
         return "redirect:/projects";
     }
+
+    @GetMapping("/{id}/dashboard")
+    public String showProjectDashboard(@PathVariable Long id, Model model) {
+        LanguageProject project = projectService.findById(id);
+        model.addAttribute("project", project);
+        return "project_dashboard";
+    }
+
 
 }
