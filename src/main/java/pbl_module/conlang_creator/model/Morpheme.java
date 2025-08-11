@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pbl_module.conlang_creator.enums.MorphemeType;
 
 import java.util.List;
 
@@ -20,7 +21,9 @@ public class Morpheme {
 
     private String form;
     private String meaning;
-    private String type;
+
+    @Enumerated(EnumType.STRING)
+    private MorphemeType type;
 
     @ManyToOne
     private LanguageProject languageProject;

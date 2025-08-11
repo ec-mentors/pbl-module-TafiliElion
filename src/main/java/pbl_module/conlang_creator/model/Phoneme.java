@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pbl_module.conlang_creator.enums.PhonemeCategory;
 
 @Entity
 @Data
@@ -18,7 +19,9 @@ public class Phoneme {
 
     private String symbol;
     private String ipa;
-    private String category;
+
+    @Enumerated(EnumType.STRING)
+    private PhonemeCategory category;
 
     @ManyToOne
     private LanguageProject languageProject;

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pbl_module.conlang_creator.enums.PartOfSpeech;
 
 import java.util.List;
 
@@ -21,7 +22,9 @@ public class Word {
 
     private String spelling;
     private String meaning;
-    private String partOfSpeech;
+
+    @Enumerated(EnumType.STRING)
+    private PartOfSpeech partOfSpeech;
 
     @ManyToOne
     private LanguageProject languageProject;
