@@ -88,14 +88,19 @@
 
     <label>Part of Speech:</label>
     <label>
-        <input type="text" th:field="*{partOfSpeech}" />
+        <select th:field="*{partOfSpeech}">
+            <option th:each="pos : ${T(pbl_module.conlang_creator.enums.PartOfSpeech).values()}"
+                    th:value="${pos}" th:text="${pos}"></option>
+        </select>
     </label>
 
     <label>Morphemes:</label>
     <div th:each="morpheme : ${morphemes}" class="morpheme-checkbox">
-        <input type="checkbox"
-               th:value="${morpheme.id}"
-               th:field="*{morphemeIds}" />
+        <label>
+            <input type="checkbox"
+                   th:value="${morpheme.id}"
+                   th:field="*{morphemeIds}" />
+        </label>
         <span th:text="${morpheme.form}">form</span>
     </div>
 
