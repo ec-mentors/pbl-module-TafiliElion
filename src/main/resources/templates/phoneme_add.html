@@ -78,7 +78,10 @@
 
     <label>Category:</label>
     <label>
-        <input type="text" th:field="*{category}" />
+        <select th:field="*{category}">
+            <option th:each="cat : ${T(pbl_module.conlang_creator.enums.PhonemeCategory).values()}"
+                    th:value="${cat}" th:text="${cat}"></option>
+        </select>
     </label>
 
     <button type="submit">Save</button>

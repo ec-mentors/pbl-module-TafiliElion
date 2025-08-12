@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <title>Morphemes</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        h1 { text-align: center; }
+        .top-actions {
+            width: 80%; margin: 10px auto; display: flex; justify-content: space-between;
+        }
+        .top-actions a {
+            background-color: #4CAF50; color: white; padding: 10px 16px;
+            text-decoration: none; border-radius: 4px;
+        }
+        .top-actions a:hover { background-color: #45a049; }
+        table { width: 80%; margin: 20px auto; border-collapse: collapse; }
+        th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #f4f4f4; }
+        .actions { display: flex; gap: 10px; }
+        .button { background-color: #F44336; color: white; padding: 8px 14px; border: none; border-radius: 4px; cursor: pointer; }
+        .button:hover { opacity: 0.9; }
+        .empty-message { text-align: center; margin-top: 30px; color: #777; }
+    </style>
+</head>
+<body>
+
+<h1>Morphemes</h1>
+
+<div class="top-actions">
+    <a th:href="@{/projects/{id}/dashboard(id=${projectId})}">← Back to Project</a>
+    <a th:href="@{/morphemes/add(projectId=${projectId})}">Add Morpheme</a>
+</div>
+
+<div class="empty-message" th:if="${#lists.isEmpty(morphemes)}">
+    <p>No morphemes yet. Click “Add Morpheme” to create your first one.</p>
+</div>
+
+<div th:unless="${#lists.isEmpty(morphemes)}">
+    <table>
+        <thead>
+        <tr>
+            <th>Form</th>
+            <th>Meaning</th>
+            <th>Type</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="m : ${morphemes}">
+            <td th:text="${m.form}">form</td>
+            <td th:text="${m.meaning}">meaning</td>
+            <td th:text="${m.type}">type</td>
+            <td class="actions">
+                <form th:action="@{/morphemes/delete/{id}(id=${m.id}, projectId=${projectId})}" method="post">
+                    <button class="button" type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
