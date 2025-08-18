@@ -14,9 +14,8 @@
 
         table {
             width: 80%;
-            margin: auto;
             border-collapse: collapse;
-            margin-top: 20px;
+            margin: 20px auto auto;
         }
 
         th, td {
@@ -44,10 +43,9 @@
 
         .top-actions {
             width: 80%;
-            margin: auto;
             display: flex;
             justify-content: flex-end;
-            margin-top: 10px;
+            margin: 10px auto auto;
         }
 
         .top-actions a {
@@ -87,9 +85,16 @@
         <td th:text="${word.meaning}">meaning</td>
         <td th:text="${word.partOfSpeech}">POS</td>
         <td class="actions">
-            <form th:action="@{/words/delete/{id}(id=${word.id}, projectId=${projectId})}" method="post">
-            <button type="submit">Delete</button>
-            </form>
+            <a th:href="@{/confirm-delete(
+        title=${'Delete word: ' + word.spelling + '?'},
+        message=${'This will permanently remove the word.'},
+        postUrl=${'/words/delete/' + word.id + '(?projectId=' + projectId + ')'},
+        cancelUrl=${'/words?projectId=' + projectId},
+        confirmLabel=${'Delete Word'}
+    )}">
+                Delete
+            </a>
+
         </td>
     </tr>
     </tbody>
