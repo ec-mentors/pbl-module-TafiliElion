@@ -17,15 +17,10 @@
     <h1 th:text="${title}">Confirm Deletion</h1>
     <p th:text="${message}">Are you sure?</p>
 
-    <!-- Confirm -->
     <form th:action="${postUrl}" method="post">
-        <!-- If you use Spring Security CSRF, keep this (Thymeleaf/Spring adds it automatically if enabled)
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-        -->
         <button class="danger" type="submit" th:text="${confirmLabel} ?: 'Delete'">Delete</button>
     </form>
 
-    <!-- Cancel -->
     <div class="buttons">
         <a class="secondary" th:href="${cancelUrl}">Cancel</a>
     </div>
