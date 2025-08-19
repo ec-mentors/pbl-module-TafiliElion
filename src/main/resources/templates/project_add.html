@@ -1,80 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
-    <title>Create Language Project</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-        }
-
-        form {
-            width: 400px;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        label {
-            display: block;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 8px;
-            margin-top: 4px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        button {
-            margin-top: 20px;
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        a {
-            display: block;
-            margin-top: 20px;
-            text-align: center;
-            text-decoration: none;
-            color: #4CAF50;
-        }
-    </style>
+    <title>Add Language Project</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
 
 <h1>Create New Language Project</h1>
 
-<form th:action="@{/projects/add}" th:object="${projectDto}" method="post">
+<form class="form-card" th:action="@{/projects/add}" th:object="${projectDto}" method="post">
     <label for="name">Name:</label>
-    <input type="text" th:field="*{name}" id="name" />
+    <input id="name" type="text" th:field="*{name}" class="input" placeholder="My Conlang"/>
 
     <label for="description">Description:</label>
-    <input type="text" th:field="*{description}" id="description" />
+    <textarea id="description" th:field="*{description}" class="textarea" placeholder="Short description"></textarea>
 
-    <button type="submit">Create Project</button>
+    <button type="submit" class="btn btn-success" style="width:100%;">Save Project</button>
 </form>
 
-<a th:href="@{/projects}">← Back to Projects</a>
+<a class="link-btn center" th:href="@{/projects}">← Back to Projects</a>
 
 </body>
 </html>
+
 

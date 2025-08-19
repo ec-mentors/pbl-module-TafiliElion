@@ -2,53 +2,40 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
     <title>Add Morpheme</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 40px; }
-        h1 { text-align: center; }
-        form {
-            width: 420px; margin: 0 auto; padding: 20px;
-            border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;
-        }
-        label { display: block; margin-top: 10px; font-weight: bold; }
-        input[type="text"] {
-            width: 100%; padding: 8px; margin-top: 4px;
-            border: 1px solid #ccc; border-radius: 4px;
-        }
-        select { width: 100%; padding: 8px; margin-top: 4px; }
-        button {
-            margin-top: 16px; width: 100%; padding: 10px;
-            background-color: #4CAF50; color: white; border: none; border-radius: 4px; font-size: 16px;
-        }
-        button:hover { background-color: #45a049; }
-        .back-link {
-            display: block; text-align: center; margin-top: 16px; text-decoration: none; color: #4CAF50;
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
 
-<h1>Add Morpheme</h1>
+<h1>Add New Morpheme</h1>
 
-<form th:action="@{/morphemes/add(projectId=${morphemeDto.languageProjectId})}" th:object="${morphemeDto}" method="post">
-    <input type="hidden" th:field="*{languageProjectId}"/>
+<form class="form-card" th:action="@{/morphemes/add(projectId=${morphemeDto.languageProjectId})}" th:object="${morphemeDto}" method="post">
+    <input type="hidden" th:field="*{languageProjectId}" />
 
     <label for="form">Form:</label>
-    <input id="form" type="text" th:field="*{form}" placeholder="e.g. -ka or arv" />
+    <input id="form" type="text" th:field="*{form}" class="input" placeholder="morpheme spelling"/>
 
     <label for="meaning">Meaning:</label>
-    <input id="meaning" type="text" th:field="*{meaning}" placeholder="e.g. diminutive, hunter" />
+    <input id="meaning" type="text" th:field="*{meaning}" class="input" placeholder="meaning"/>
 
     <label for="type">Type:</label>
-    <select id="type" th:field="*{type}">
+    <select id="type" th:field="*{type}" class="select">
         <option th:each="t : ${T(pbl_module.conlang_creator.enums.MorphemeType).values()}"
-                th:value="${t}" th:text="${t}">TYPE</option>
+                th:value="${t}" th:text="${t}"></option>
     </select>
 
+    <label>Phonemes:</label>
+    <div class="chooser">
+        <div class="item" th:each="p : ${phonemes}">
+            <label for="ph__${p.id}"></label><input type="checkbox" th:field="*{phonemeIds}" th:value="${p.id}" id="ph__${p.id}"/>
+            <label th:for="${'ph__' + p.id}" th:text="${p.symbol + ' [' + p.ipa + ']'}">p</label>
+        </div>
+    </div>
 
-    <button type="submit">Save Morpheme</button>
+    <button type="submit" class="btn btn-success" style="width:100%;">Save Morpheme</button>
 </form>
 
-<a class="back-link" th:href="@{/morphemes(projectId=${morphemeDto.languageProjectId})}">← Back to Morphemes</a>
+<a class="link-btn center" th:href="@{/morphemes(projectId=${morphemeDto.languageProjectId})}">← Back to Morphemes</a>
 
 </body>
 </html>
+

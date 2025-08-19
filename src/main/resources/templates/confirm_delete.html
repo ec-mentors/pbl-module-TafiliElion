@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <title th:text="${title}">Confirm Delete</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .card { width: 460px; margin: 0 auto; padding: 22px; border: 1px solid #ddd; border-radius: 8px; background: #fafafa; }
+        h1 { font-size: 20px; margin: 0 0 12px; }
+        p { color: #444; }
+        .buttons { display: flex; gap: 10px; margin-top: 16px; }
+        .danger { background: #F44336; color: #fff; border: none; padding: 10px 16px; border-radius: 4px; cursor: pointer; }
+        .secondary { background: #eee; color: #333; text-decoration: none; padding: 10px 16px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h1 th:text="${title}">Confirm Deletion</h1>
+    <p th:text="${message}">Are you sure?</p>
+
+    <form th:action="${postUrl}" method="post">
+        <button class="danger" type="submit" th:text="${confirmLabel} ?: 'Delete'">Delete</button>
+    </form>
+
+    <div class="buttons">
+        <a class="secondary" th:href="${cancelUrl}">Cancel</a>
+    </div>
+</div>
+</body>
+</html>
