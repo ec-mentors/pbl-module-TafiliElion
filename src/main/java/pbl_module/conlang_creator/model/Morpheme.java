@@ -30,4 +30,5 @@ public class Morpheme {
 
     @ManyToMany
     private List<Phoneme> phonemesInMorpheme;
+
 }
