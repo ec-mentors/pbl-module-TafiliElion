@@ -31,7 +31,6 @@ public class DataInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) {
         if (languageProjectRepository.count() == 0) {
-            // Create a base project
             LanguageProject project = new LanguageProject();
             project.setName("Sample Project");
             project.setDescription("This is a preloaded test project.");
