@@ -73,7 +73,7 @@ It allows users to define phonemes, morphemes, and words, and then connect them 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/conlang-creator.git
+   git clone https://github.com/TafiliElion/conlang-creator.git
    cd conlang-creator
    ```
 
